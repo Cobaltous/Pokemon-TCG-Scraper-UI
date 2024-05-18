@@ -12,6 +12,8 @@ UI is probably pretty buggy right now and has some things I'm looking to fix/add
 
 The program does have a dependency on jsoup and JSON-java to do its requesting and processing and whatnot, if you'd rather build from the provided source code than use the provided .jar file.
 
+Additionally, for the sake of running faster, it will save backup files of each HTML page that it pulls until they become stale (1 week for Pokedex data, 1 hour for card data) so you don't have to pull a fresh page every time you use the program. 
+
 
 PokemonDB Page: https://pokemondb.net/pokedex/stats/height-weight
 
