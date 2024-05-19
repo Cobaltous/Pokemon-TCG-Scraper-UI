@@ -161,7 +161,7 @@ public class PokemonTCGCore	{
 		double largest = 0,
 			faveWeight,
 			setWeight;
-		int i = faves.size() + 1;
+		int i = faves.size() + 1, dropoffDenom;
 		for(Pokemon fave : faves) {
 //			faveWeight = (startingPortion / 2) + (startingPortion / 2 / i);
 //			System.out.println("i: " + i);
@@ -170,7 +170,7 @@ public class PokemonTCGCore	{
 //			System.out.println("faveWeight: " + faveWeight);
 			
 			
-
+			dropoffDenom = 1;
 			for(Card card : fave.getCardAppearances()) {
 				curr = natDex.getSet(card.getSetName());
 
@@ -200,7 +200,7 @@ public class PokemonTCGCore	{
 						card.getNum(),
 						card.getName(),
 						card.getPrice() != 0 ? (": $" + card.getPrice()) : ""));
-				curr.addSetWeight(faveWeight);
+				curr.addSetWeight(faveWeight / (double)dropoffDenom++);
 				
 				setWeight = curr.getSetWeight();
 				if(largest < setWeight) {
@@ -261,6 +261,7 @@ public class PokemonTCGCore	{
 	String getBestSetsForAvgCardPrice() {
 //		HashMap<CardSet, Double> avgCardValues = new HashMap<CardSet, Double>();
 		int hadPriceData, setTotal;
+		
 		for(CardSet set : natDex.getSetDex().values()) {
 			hadPriceData = 0;
 			setTotal = 0;
@@ -272,9 +273,11 @@ public class PokemonTCGCore	{
 			}
 			set.setAvgCardPrice(setTotal / (double)hadPriceData);
 		}
+		
 		CardSet[] finalSets = (CardSet[])natDex.getSetDex().values().toArray(new CardSet[natDex.getSetDexSize()]);
 		Arrays.sort(finalSets, new CardSetAvgCardPriceComparator());
 		StringBuilder sb = new StringBuilder();
+		
 		for(CardSet set : finalSets) {
 			sb.append(String.format("%s - %s\n\t%.2f\n",
 					set.getName(),
