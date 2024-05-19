@@ -10,7 +10,7 @@ Otherwise, it also has a function to list out each card per set that a selected 
 
 UI is probably pretty buggy right now and has some things I'm looking to fix/add.
 
-Additionally, for the sake of running faster, it will save backup files of each HTML page that it pulls until they become stale (1 week for Pokedex data, 1 hour for card data) so you don't have to pull a fresh page every time you use the program. You can pick out which folder it'll output to; otherwise, it'll create on in the same directory from where you run the program.
+Additionally, for the sake of running faster, it will save backup files of each HTML page that it pulls until they become stale (1 week for Pokedex data, 1 day for card data) so you don't have to pull a fresh page every time you use the program, although you can if you'd like. You can pick out which folder it'll output to; otherwise, it'll create on in the same directory from where you run the program.
 
 
 The program does have a dependency on jsoup and JSON-java to do its requesting and processing and whatnot, if you'd rather build from the provided source code than use the provided .jar file. It is, however, uncommentated and full of dummied text, so sift through that at your own risk. This is really only here to host it for me and one/two others right now.
